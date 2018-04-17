@@ -24,8 +24,8 @@ class Result extends BaseObject {
      * @return object or null
      */
     protected function getCity() {
-        return $this->_result;
-//        return new City($this->_result['city']);
+//        return $this->_result;
+        return new City($this->_result['city']);
     }
 
     /*

@@ -62,81 +62,69 @@ $ip = Yii::$app->geoip->ip("208.113.83.165");
 To see all the available properties, you need to do the following:
 
 ```php
-var_dump($ip);die;
+var_dump($ip->city);
+var_dump($ip->continent);
+var_dump($ip->country);
+var_dump($ip->location);
+var_dump($ip->postal);
+var_dump($ip->registeredCountry);
+var_dump($ip->subdivisions);
+
+
+die;
 
 ```
 
 The result can be like :
 
 ```php
-object(coderius\geoIp\Result)[46]
-  protected 'data' => 
-    array (size=7)
-      'city' => 
-        array (size=2)
-          'geoname_id' => int 5099836
-          'names' => 
-            array (size=4)
-              ...
-      'continent' => 
-        array (size=3)
-          'code' => string 'NA' (length=2)
-          'geoname_id' => int 6255149
-          'names' => 
-            array (size=8)
-              ...
-      'country' => 
-        array (size=3)
-          'geoname_id' => int 6252001
-          'iso_code' => string 'US' (length=2)
-          'names' => 
-            array (size=8)
-              ...
-      'location' => 
-        array (size=5)
-          'accuracy_radius' => int 1000
-          'latitude' => float 40.7209
-          'longitude' => float -74.0468
-          'metro_code' => int 501
-          'time_zone' => string 'America/New_York' (length=16)
-      'postal' => 
-        array (size=1)
-          'code' => string '07302' (length=5)
-      'registered_country' => 
-        array (size=3)
-          'geoname_id' => int 6252001
-          'iso_code' => string 'US' (length=2)
-          'names' => 
-            array (size=8)
-              ...
-      'subdivisions' => 
-        array (size=1)
-          0 => 
-            array (size=3)
-              ...
-  protected 'attributes' => 
-    array (size=2)
-      'location' => 
-        object(coderius\geoIp\ProperCreator)[48]
-          public 'arr' => 
-            array (size=0)
-              ...
-          public 'accuracy_radius' => int 1000
-          public 'latitude' => float 40.7209
-          public 'longitude' => float -74.0468
-          public 'metro_code' => int 501
-          public 'time_zone' => string 'America/New_York' (length=16)
-      'subdivisions' => 
-        object(coderius\geoIp\ProperCreator)[49]
-          public 'arr' => 
-            array (size=1)
-              ...
+object(coderius\geoIp\City)[47]
+  private '_geoname_id' => int 5099836
+  private '_names' => 
+    array (size=4)
+      'en' => string 'Jersey City' (length=11)
+      'ja' => string 'ジャージーシティ' (length=24)
+      'ru' => string 'Джерси-Сити' (length=21)
+      'zh-CN' => string '泽西市' (length=9)
+object(coderius\geoIp\Continent)[47]
+  private '_code' => string 'NA' (length=2)
+  private '_geoname_id' => int 6255149
+  private '_names' => 
+    array (size=8)
+      'de' => string 'Nordamerika' (length=11)
+      'en' => string 'North America' (length=13)
+      'es' => string 'Norteamérica' (length=13)
+      'fr' => string 'Amérique du Nord' (length=17)
+      'ja' => string '北アメリカ' (length=15)
+      'pt-BR' => string 'América do Norte' (length=17)
+      'ru' => string 'Северная Америка' (length=31)
+      'zh-CN' => string '北美洲' (length=9)
+object(coderius\geoIp\Country)[47]
+  private '_iso_code' => string 'US' (length=2)
+  private '_geoname_id' => int 6252001
+  private '_names' => 
+    array (size=8)
+      'de' => string 'USA' (length=3)
+      'en' => string 'United States' (length=13)
+      'es' => string 'Estados Unidos' (length=14)
+      'fr' => string 'États-Unis' (length=11)
+      'ja' => string 'アメリカ合衆国' (length=21)
+      'pt-BR' => string 'Estados Unidos' (length=14)
+      'ru' => string 'США' (length=6)
+      'zh-CN' => string '美国' (length=6)
+object(coderius\geoIp\Location)[47]
+  private '_accuracy_radius' => int 1000
+  private '_latitude' => float 40.7209
+  private '_longitude' => float -74.0468
+  private '_metro_code' => int 501
+  private '_time_zone' => string 'America/New_York' (length=16)
 
 ```
 
-
-
 ### Base usage
+
+
+Access to private properties is done with getters
 
 ```php
 
@@ -148,22 +136,22 @@ $ip = Yii::$app->geoip->ip("208.113.83.165")//or Yii::$app->geoip->ip() for curr
 $ip->country->names->en;//string 'United States'
 $ip->country->names->ru;//string 'США'
 $ip->country->geoname_id;//int 6252001
-$ip->country->iso_code;//string 'US'
+$ip->country->isoCode;//string 'US'
 
 
-$ip->city->geoname_id;//int 5099836
+$ip->city->geonameId;//int 5099836
 $ip->city->names->en;//string 'Jersey City'
 $ip->city->names->ru;//string 'Джерси-Сити'
 
 $ip->location->latitude;//float 40.7209
 $ip->location->longitude;//float -74.0468
-$ip->location->metro_code;//int 501
-$ip->location->time_zone;//string 'America/New_York'
+$ip->location->metroCode;//int 501
+$ip->location->timeZone;//string 'America/New_York'
 
 $ip->postal->code;//string '07302'
 
 $ip->registered_country->geoname_id;//int 6252001
-$ip->registered_country->iso_code;// string 'US'
+$ip->registered_country->isoCode;// string 'US'
 $ip->registered_country->names;//string 'America/New_York'
 
 $ip->subdivisions->arr[0]->names->en//string 'New Jersey'
