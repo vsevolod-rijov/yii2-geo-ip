@@ -1,5 +1,13 @@
 Yii 2 GeoIP extension
 =====================
+
+[![Latest Stable Version](https://poser.pugx.org/coderius/yii2-geo-ip/v/stable)](https://packagist.org/packages/coderius/yii2-geo-ip)
+[![Total Downloads](https://poser.pugx.org/coderius/yii2-geo-ip/downloads)](https://packagist.org/packages/coderius/yii2-geo-ip)
+[![Latest Unstable Version](https://poser.pugx.org/coderius/yii2-geo-ip/v/unstable)](https://packagist.org/packages/coderius/yii2-geo-ip)
+[![License](https://poser.pugx.org/coderius/yii2-geo-ip/license)](https://packagist.org/packages/coderius/yii2-geo-ip)
+[![Monthly Downloads](https://poser.pugx.org/coderius/yii2-geo-ip/d/monthly)](https://packagist.org/packages/coderius/yii2-geo-ip)
+
+
 This extension allows you to get geo data by ip address.
 
 Currently available:

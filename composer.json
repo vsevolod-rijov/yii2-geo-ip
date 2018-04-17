@@ -11,8 +11,6 @@
             "email": "sunrise4fun@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     
     "require": {
         "php": ">=5.4.0",
