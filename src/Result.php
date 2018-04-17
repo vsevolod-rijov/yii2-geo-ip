@@ -1,21 +1,12 @@
 <?php
+/**
+ * @copyright Copyright (C) 2018 Sergio coderius <coderius>
+ * @license This program is free software: GNU General Public License
+ */
 namespace coderius\geoIp;
 
 use yii\base\BaseObject;
 
-/**
- * Class Result
- * @package coderius\geoIp
- * @author coderius <coder3000web@gmail.com>
- *
- * @property object|null city
- * @property object|null continent
- * @property object|null country
- * @property object|null location
- * @property object|null postal
- * @property object|null registered_country
- * @property object|null subdivisions
- */
 class Result extends BaseObject {
     
     
