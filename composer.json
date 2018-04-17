@@ -17,7 +17,7 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.0",
         "maxmind-db/reader": "~1.0",
-        "coderius/maxmind-geolite2-db": "*"
+        "coderius/maxmind-geolite2-database": "*"
         
     },
     "require-dev": {
@@ -27,5 +27,9 @@
         "psr-4": {
             "coderius\\geoIp\\": "src/"
         }
-    }
+    },
+    "repositories": [
+    
+        
+    ]
 }

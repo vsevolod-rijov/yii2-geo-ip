@@ -1,7 +1,7 @@
 <?php
-
-
 namespace coderius\geoIp;
+
+use yii\base\BaseObject;
 
 /**
  * Class Result
@@ -16,67 +16,74 @@ namespace coderius\geoIp;
  * @property object|null registered_country
  * @property object|null subdivisions
  */
-class Result extends ResultBase {
+class Result extends BaseObject {
+    
+    
+    private $_result;
+
+
+    public function __construct($result, $config = [])
+    {
+        $this->_result = $result;
+        parent::__construct($config);
+    }
     
     /*
      * @param array $data
      * @return object or null
      */
-    protected function getCity($data) {
-        return isset($data['city']) ? new ProperCreator($data['city']) : null;
+    protected function getCity() {
+        return $this->_result;
+//        return new City($this->_result['city']);
     }
 
     /*
      * @param array $data
      * @return object|null
      */
-    protected function getContinent($data) {
-        return isset($data['continent']) ? new ProperCreator($data['continent']) : null;
+    protected function getContinent() {
+        return new Continent($this->_result['continent']);
     }
     
     /*
      * @param array $data
      * @return object|null
      */
-    protected function getCountry($data) {
-        return isset($data['country']) ? new ProperCreator($data['country']) : null;
+    protected function getCountry() {
+        return new Country($this->_result['country']);
     }
 
     /*
      * @param array $data
      * @return object|null
      */
-    protected function getLocation($data) {
-        return isset($data['location']) ? new ProperCreator($data['location']) : null;
+    protected function getLocation() {
+        return new Location($this->_result['location']);
     }
 
     /*
      * @param array $data
      * @return object|null
      */
-    protected function getPostal($data) {
-        return isset($data['postal']) ? new ProperCreator($data['postal']) : null;
+    protected function getPostal() {
+        return new Postal($this->_result['postal']);
     }
     
     /*
      * @param array $data
      * @return object|null
      */
-    protected function getRegisteredCountry($data) {
-        return isset($data['registered_country']) ? new ProperCreator($data['registered_country']) : null;
+    protected function getRegisteredCountry() {
+        return new RegisteredCountry($this->_result['registered_country']);
     }
 
     
-    /*
-     * Base usage:
-     *            $ip = Yii::$app->geoip->ip("208.113.83.165");
-     *            var_dump($ip->subdivisions->arr[0]->names->en);
-     * 
-     * @param array $data
-     * @return object|null
-     */
-    protected function getSubdivisions($data) {
-        return isset($data['subdivisions']) ? new ProperCreator($data['subdivisions']) : null;
+    protected function getSubdivisions() {
+        $result = [];
+        foreach($this->_result['subdivisions'] as $subdivision){
+            $result[] = new Subdivision($subdivision);
+        }
+        return $result;
     }
     
 }
