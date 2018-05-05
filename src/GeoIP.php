@@ -40,7 +40,7 @@ class GeoIP extends Component {
      * @inheritDoc
      */
     public function init() {
-        $db = $this->dbPath ?: Yii::getAlias('@vendor/coderius/maxmind-geolite2-database/GeoLite2-City.mmdb');
+        $db = $this->dbPath ?: Yii::getAlias('@vendor/coderius/maxmind-geolite2-db/GeoLite2-City.mmdb');
         
         $this->session = Yii::$app->session;
         $this->reader = new Reader($db);
