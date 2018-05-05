@@ -14,7 +14,6 @@
     
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.0",
         "maxmind-db/reader": "~1.0",
         "coderius/maxmind-geolite2-database": "*"
         
@@ -27,8 +26,10 @@
             "coderius\\geoIp\\": "src/"
         }
     },
-    "repositories": [
-    
-        
+     "repositories": [
+        {
+            "type": "path",
+            "url": "/opt/lampp/htdocs/yii2-extentions/maxmind-geolite2-database"
+        }
     ]
 }

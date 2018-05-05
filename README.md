@@ -77,8 +77,6 @@ var_dump($ip->location);
 var_dump($ip->postal);
 var_dump($ip->registeredCountry);
 var_dump($ip->subdivisions);
-
-
 die;
 
 ```
@@ -138,31 +136,35 @@ Access to private properties is done with getters
 
 $ip = Yii::$app->geoip->ip("208.113.83.165")//or Yii::$app->geoip->ip() for current user
 
+if($ip->hasResult()){
+    //Select the desired property, according to the tree, which showed
 
-//Select the desired property, according to the tree, which showed
-
-$ip->country->names->en;//string 'United States'
-$ip->country->names->ru;//string 'США'
-$ip->country->geoname_id;//int 6252001
-$ip->country->isoCode;//string 'US'
+    $ip->country->names->en;//string 'United States'
+    $ip->country->names->ru;//string 'США'
+    $ip->country->geoname_id;//int 6252001
+    $ip->country->isoCode;//string 'US'
 
 
-$ip->city->geonameId;//int 5099836
-$ip->city->names->en;//string 'Jersey City'
-$ip->city->names->ru;//string 'Джерси-Сити'
+    $ip->city->geonameId;//int 5099836
+    $ip->city->names->en;//string 'Jersey City'
+    $ip->city->names->ru;//string 'Джерси-Сити'
 
-$ip->location->latitude;//float 40.7209
-$ip->location->longitude;//float -74.0468
-$ip->location->metroCode;//int 501
-$ip->location->timeZone;//string 'America/New_York'
+    $ip->location->latitude;//float 40.7209
+    $ip->location->longitude;//float -74.0468
+    $ip->location->metroCode;//int 501
+    $ip->location->timeZone;//string 'America/New_York'
 
-$ip->postal->code;//string '07302'
+    $ip->postal->code;//string '07302'
 
-$ip->registered_country->geoname_id;//int 6252001
-$ip->registered_country->isoCode;// string 'US'
-$ip->registered_country->names;//string 'America/New_York'
+    $ip->registered_country->geoname_id;//int 6252001
+    $ip->registered_country->isoCode;// string 'US'
+    $ip->registered_country->names;//string 'America/New_York'
 
-$ip->subdivisions->arr[0]->names->en//string 'New Jersey'
+    $ip->subdivisions->arr[0]->names->en//string 'New Jersey'      
+}
+
+
+
 
 //etc.
 ```

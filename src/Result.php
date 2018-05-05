@@ -19,6 +19,10 @@ class Result extends BaseObject {
         parent::__construct($config);
     }
     
+    public function hasResult() {
+        return $this->_result ? true : false;
+    }
+    
     /*
      * @param array $data
      * @return object or null
