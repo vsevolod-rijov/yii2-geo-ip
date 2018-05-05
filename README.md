@@ -30,7 +30,7 @@ add to your `composer.json`
 ```json
 {
     "require": {
-        "coderius/yii2-geo-ip": "~1.0"
+        "coderius/yii2-geo-ip": "~1.0.2"
     }
 }
 ```
@@ -64,6 +64,67 @@ somewhere in code
 $ip = Yii::$app->geoip->ip(); // current user ip
 
 $ip = Yii::$app->geoip->ip("208.113.83.165");
+
+### Base usage
+
+
+Access to private properties is done with getters
+
+```php
+
+$ip = Yii::$app->geoip->ip("208.113.83.165")//or Yii::$app->geoip->ip() for current user
+
+if($ip->hasResult()){
+    //Select the desired property, according to the tree, which showed
+
+    $ip->country->names->en;//string 'United States'
+    $ip->country->names->ru;//string 'США'
+    $ip->country->geoname_id;//int 6252001
+    $ip->country->isoCode;//string 'US'
+
+
+    $ip->city->geonameId;//int 5099836
+    $ip->city->names->en;//string 'Jersey City'
+    $ip->city->names->ru;//string 'Джерси-Сити'
+
+    $ip->location->latitude;//float 40.7209
+    $ip->location->longitude;//float -74.0468
+    $ip->location->metroCode;//int 501
+    $ip->location->timeZone;//string 'America/New_York'
+
+    $ip->postal->code;//string '07302'
+
+    $ip->registered_country->geoname_id;//int 6252001
+    $ip->registered_country->isoCode;// string 'US'
+    $ip->registered_country->names;//string 'America/New_York'
+
+    $ip->subdivisions->arr[0]->names->en//string 'New Jersey'      
+}
+
+
+
+
+//etc.
+```
+
+### Provide a custom database (for example, if you own a licence)
+
+```php
+<?php
+
+$config = [
+    ...
+    'components' => [
+        'geoip' => [
+            'class' => 'coderius\GeoIP\GeoIP',
+            'dbPath' => Yii::getAlias('@example/maxmind/database/city.mmdb')
+        ],
+    ]
+    ...
+];
+```
+
+
 
 ```
 
@@ -125,65 +186,6 @@ object(coderius\geoIp\Location)[47]
   private '_metro_code' => int 501
   private '_time_zone' => string 'America/New_York' (length=16)
 
-```
-
-### Base usage
-
-
-Access to private properties is done with getters
-
-```php
-
-$ip = Yii::$app->geoip->ip("208.113.83.165")//or Yii::$app->geoip->ip() for current user
-
-if($ip->hasResult()){
-    //Select the desired property, according to the tree, which showed
-
-    $ip->country->names->en;//string 'United States'
-    $ip->country->names->ru;//string 'США'
-    $ip->country->geoname_id;//int 6252001
-    $ip->country->isoCode;//string 'US'
-
-
-    $ip->city->geonameId;//int 5099836
-    $ip->city->names->en;//string 'Jersey City'
-    $ip->city->names->ru;//string 'Джерси-Сити'
-
-    $ip->location->latitude;//float 40.7209
-    $ip->location->longitude;//float -74.0468
-    $ip->location->metroCode;//int 501
-    $ip->location->timeZone;//string 'America/New_York'
-
-    $ip->postal->code;//string '07302'
-
-    $ip->registered_country->geoname_id;//int 6252001
-    $ip->registered_country->isoCode;// string 'US'
-    $ip->registered_country->names;//string 'America/New_York'
-
-    $ip->subdivisions->arr[0]->names->en//string 'New Jersey'      
-}
-
-
-
-
-//etc.
-```
-
-### Provide a custom database (for example, if you own a licence)
-
-```php
-<?php
-
-$config = [
-    ...
-    'components' => [
-        'geoip' => [
-            'class' => 'coderius\GeoIP\GeoIP',
-            'dbPath' => Yii::getAlias('@example/maxmind/database/city.mmdb')
-        ],
-    ]
-    ...
-];
 ```
 
 
