@@ -29,7 +29,7 @@ class Result extends BaseObject {
      */
     protected function getCity() {
 //        return $this->_result;
-        return new City($this->_result['city']);
+        return (isset($this->_result['city'])) ? new City($this->_result['city']) : null;
     }
 
     /*
