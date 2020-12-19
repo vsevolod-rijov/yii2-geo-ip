@@ -50,11 +50,14 @@ class GeoIP extends Component {
 
     /**
      * @param string|null $ip
-     * @return Result
+     * @return Result|null
      */
     public function ip($ip = null, $cache = true) {
         if ($ip === null) {
             $ip = Yii::$app->request->getUserIP();
+        }
+        if ($ip === null) {
+            return null;
         }
          
         if (!array_key_exists($ip, $this->result) || $cache === false) {
